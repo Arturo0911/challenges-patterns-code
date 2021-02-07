@@ -79,6 +79,9 @@ static void displayPathtoPrincess(int n, String [] grid){
     }
   }
 
+public void countPositionBtwBotPeach ()
+
+
 public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int m;
