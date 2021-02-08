@@ -6,7 +6,7 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
-public class Solution {
+public class Main {
 
 
 
@@ -23,6 +23,7 @@ static void displayPathtoPrincess(int n, String [] grid){
     int peachPositionH =  0;
     int botPositionW = 0;
     int botPositionH = 0;
+    int counter = 0;
 
 
         for (int x = 0; x < grid.length; x++){
@@ -79,7 +80,7 @@ static void displayPathtoPrincess(int n, String [] grid){
     }
   }
 
-public void countPositionBtwBotPeach ()
+public void countPositionBtwBotPeach (){}
 
 
 public static void main(String[] args) {
