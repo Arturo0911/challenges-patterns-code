@@ -6,6 +6,10 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
+
+/**
+ * @author  Arturo Negreiros Samanez
+ * */
 public class Main {
 
 
