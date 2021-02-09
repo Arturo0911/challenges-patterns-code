@@ -16,31 +16,33 @@ public class CommonStrings {
      *
      * */
     public String longestCommonPrefix(String[] strs) {
-        int sizeString = strs.length;
-        String param = "";
-        ArrayList<Integer> vectorSize = new ArrayList<>();
-        for (String wordSizes: strs){
-            vectorSize.add(wordSizes.length());
+
+        if (strs.length == 0) return "";
+
+        String prefix = strs[0];
+
+        for (int i = 1; i < strs.length; i++){
+
+            while(strs[i].indexOf(prefix) != 0){
+                prefix = prefix.substring(0, prefix.length() - 1);
+                if (prefix.isEmpty())return "";
+            }
+
         }
-        Collections.sort(vectorSize);
-        int commonSize = vectorSize.get(0);
-
-
-
-
-
-        return null;
+        return prefix;
     }
 
 
     public static void main(String[] args) {
         CommonStrings common = new CommonStrings();
-        String [] words = {"flower", "flow", "flautarin"};
+        String [] words = {"flower", "flow", "flight"};
+
+        String letter = words[0];
         //System.out.println(common.longestCommonPrefix(words));
 
-        String palabra = "Arturo";
-        System.out.println(palabra.substring(0,5));
+        System.out.println(words[1].substring(4,4));
 
+        System.out.println(words[1].indexOf(letter));
 
     }
 }
