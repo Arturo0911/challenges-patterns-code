@@ -7,39 +7,45 @@ import java.util.regex.Pattern;
 
 public class ValidParentheses {
 
-
+    /**
+     * @param s the string with {}[]() as value or mixed
+     * */
     public boolean isValid(String s){
 
-        String [] patterns = s.split("");
-        int size = patterns.length - 1;
-        if (patterns.length <= 2) {
-            Pattern pattern = Pattern.compile("\\(\\)|\\[\\]|\\{\\}");
-            Matcher matcher = pattern.matcher(s);
-            return matcher.find();
-        }else if (patterns.length % 2 != 0){
-            return false;
-        }else{
-            Pattern pattern = Pattern.compile("\\(\\{\\[\\]\\}\\)|\\(\\[\\{\\}\\]\\)|\\[\\(\\{\\}\\)\\]|\\[\\{\\(\\)\\}\\]|" +
-                    "\\{\\[\\(\\)\\]\\}|\\{\\(\\[\\]\\)\\}|");
-            Matcher matcher = pattern.matcher(s);
-            return  matcher.find();
-        }
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++){
+            if (s.charAt(i) == '(' ||s.charAt(i) == '['|| s.charAt(i) == '{' ){
+                stack.push(s.charAt(i));
+                continue;
+            }
 
+            if (stack.isEmpty()) return false;
+            char check;
+            switch (s.charAt(i)){
+                case ')':
+                    check = stack.pop();
+
+                    if (check == '{' || check == '[')return false;
+                        break;
+                case '}':
+                    check = stack.pop();
+                    if (check == '(' || check == '[')return false;
+                    break;
+                case ']':
+                    check = stack.pop();
+
+                    if (check == '(' || check == '{')return false;
+                    break;
+            }
+        }
+        return stack.isEmpty();
     }
 
     public static void main(String[] args) {
 
-        /*ValidParentheses valid = new ValidParentheses();
-        String word = "()[]{}";
-        System.out.println(valid.isValid(word));*/
-
-        Stack<Integer> stack = new Stack<>();
-        for (int i = 0; i<= 5; i++){
-            stack.push(i);
-        }
-        System.out.println(stack);
-        stack.pop();
-        System.out.println(stack);
+        ValidParentheses valid = new ValidParentheses();
+        String word = "{[]}";
+        System.out.println(valid.isValid(word));
 
     }
 }
