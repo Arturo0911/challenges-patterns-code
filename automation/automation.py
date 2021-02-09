@@ -6,7 +6,6 @@ from os.path import isdir
 
 
 
-
 print("Hello world")
 
 
