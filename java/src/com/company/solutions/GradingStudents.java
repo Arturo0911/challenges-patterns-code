@@ -27,7 +27,25 @@ class Result{
 
     public static List<Integer> gradingStudents(List<Integer> grades) {
         // Write your code here
-        return null;
+        List<Integer> finalGrade = new ArrayList<>();
+        for (Integer value: grades){
+            if (value < 38){
+                finalGrade.add(value);
+            }else {
+
+                if (((value / 5) + 1)*5 - value < 3 ){
+                    finalGrade.add((((value / 5) + 1)*5));
+                }else{
+                    finalGrade.add(value);
+                }
+
+            }
+        }
+
+        return finalGrade;
+
+
+
 
     }
 }
