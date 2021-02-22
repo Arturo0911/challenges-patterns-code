@@ -14,7 +14,37 @@ import java.util.regex.*;
 public class AppleOrange {
 
     // Complete the countApplesAndOranges function below.
+    /**
+     * @param s integer, starting point of Sam's house location.
+     * @param t integer, ending location of Sam's house.
+     * @param a integer, location of apple tree.
+     * @param b integer, location of orange tree.
+     * @param apples integer array, distances at which each apple falls from tree
+     * @param oranges  integer array, distances at which each orange falls from the tree.
+     * */
     static void countApplesAndOranges(int s, int t, int a, int b, int[] apples, int[] oranges) {
+
+        int apple = 0;
+        int orange = 0;
+        int counterApple = 0;
+        int counterOrange = 0;
+
+
+        for (int i=0; i <  apples.length; i++){
+
+            if (a + apples[i] >= s && a+apples[i] <= t ){
+                counterApple ++;
+            }
+        }
+        System.out.println(counterApple);
+
+        for (int i=0; i <  oranges.length; i++){
+
+            if (b + oranges[i] >= s && b+oranges[i] <= t ){
+                counterOrange ++;
+            }
+        }
+        System.out.println(counterOrange);
 
 
     }
