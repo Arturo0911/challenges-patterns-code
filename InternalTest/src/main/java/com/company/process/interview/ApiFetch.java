@@ -19,7 +19,7 @@ public class ApiFetch {
 	private static final String covidPage  = "https://covid19.who.int/WHO-COVID-19-global-data.csv";
 
 	// Rick and Morty API
-	private static final String rickAndMortyApi = "https://rickandmortyapi.com/api";
+	private static final String rickAndMortyApi = "https://rickandmortyapi.com/api/character";
 
 
 	private final ArrayList<String> covidCountries;
@@ -99,6 +99,15 @@ public class ApiFetch {
 				while(scanner.hasNext()){
 					inLine += scanner.nextLine();
 				}
+
+				scanner.close();
+
+
+				JSONParser parser = new JSONParser();
+				JSONObject objectJson = (JSONObject) parser.parse(inLine);
+				JSONArray jsonArray = (JSONArray) objectJson.get("results");
+
+				System.out.println(jsonArray);
 
 			}else{
 
