@@ -3,16 +3,14 @@ package com.company.process.interview;
 import java.net.*;
 import java.io.*;
 import java.util.*;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 
 /**
  * @author Arturo Negreiros
  * @version Java 11
  */
 
-public class ApiFetch {
+public class RickAndMorty {
 
 
 	// Covid page 
@@ -26,7 +24,7 @@ public class ApiFetch {
 
 	private final ArrayList<String> covidDates;
 	
-	public ApiFetch(){
+	public RickAndMorty(){
 
 		this.covidCountries = new ArrayList<>();
 		this.covidDates = new ArrayList<>();
@@ -73,58 +71,27 @@ public class ApiFetch {
 
 
 
-	public void readRickAndMorty(){
-
-		/*
-		 *
-		 * Status code 200 means to -> the connection and the response is ok
-		 *
-		 *
-		 * 
-		 */
+	public void readRickAndMorty()  {
 
 		try {
-			String inLine = "";
-
-			URL urlConnector  = new URL(rickAndMortyApi);
-			// cast the URL object urlConnector to get her properties.
-			HttpURLConnection connection = (HttpURLConnection) urlConnector.openConnection();
-			connection.setRequestMethod("GET");
-			int responseCode = connection.getResponseCode();
-
-			if ( response == 200){
-				System.out.println(responseCode);
-				Scanner scanner = new Scanner(urlConnector.openStream());
-
-				while(scanner.hasNext()){
-					inLine += scanner.nextLine();
-				}
-
-				scanner.close();
-
-
-				JSONParser parser = new JSONParser();
-				JSONObject objectJson = (JSONObject) parser.parse(inLine);
-				JSONArray jsonArray = (JSONArray) objectJson.get("results");
-
-				System.out.println(jsonArray);
-
-			}else{
-
-				System.out.println("Someting happend");
+			URL connector = new URL(rickAndMortyApi);
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connector.openStream()));
+			String inLines;
+			int counter = 0;
+			while((inLines  = bufferedReader.readLine()) != null){
+				String[] lines = inLines.split(",");
+				System.out.println(lines[counter]);
+				counter++;
 			}
 
+			bufferedReader.close();
 
 
-			
-
-
-		}catch(Exception e){
-
+		}catch (MalformedURLException malformedURLException){
+			malformedURLException.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println(e.toString());
-		} 
-
+		}
 
 	}
 
@@ -132,14 +99,14 @@ public class ApiFetch {
 
 	/**
 	 * 
-	 * TO-DO:
+	 * TODO -> Training to fetch data from any end point:
 	 * 	- First read the data from the endpoint
 	 */
 
 
 	public static void main(String[] args){
 
-		ApiFetch api = new ApiFetch();
+		RickAndMorty api = new RickAndMorty();
 		//api.readCovidPage();
 		api.readRickAndMorty();
 
