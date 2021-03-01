@@ -1,5 +1,9 @@
 package com.company.process.interview;
 
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import java.net.*;
 import java.io.*;
 import java.util.*;
@@ -12,80 +16,28 @@ import java.util.*;
 
 public class RickAndMorty {
 
-
-	// Covid page 
-	private static final String covidPage  = "https://covid19.who.int/WHO-COVID-19-global-data.csv";
-
 	// Rick and Morty API
 	private static final String rickAndMortyApi = "https://rickandmortyapi.com/api/character";
 
-
-	private final ArrayList<String> covidCountries;
-
-	private final ArrayList<String> covidDates;
 	
-	public RickAndMorty(){
+	public RickAndMorty(){ }
 
-		this.covidCountries = new ArrayList<>();
-		this.covidDates = new ArrayList<>();
-	}
 
-	public void readCovidPage(){
 
-		try {
 
-			URL urlReader = new URL(covidPage);
-			BufferedReader reader = new BufferedReader(
-				new InputStreamReader(urlReader.openStream())
 
-			);
+	public void readRickAndMorty() throws MalformedURLException {
 
-			String inputLine;
-			//System.out.println(urlReader);
+		URL url = new URL(rickAndMortyApi);
+		try (InputStream inputStream =  url.openStream();
+			 JsonReader jsonReader = Json.createReader(inputStream)) {
 
-			while((inputLine = reader.readLine()) != null){
-				String [] lines = inputLine.split(",");
+			JsonObject object = jsonReader.readObject();
+			JsonArray jsonArray = object.getJsonArray("results");
 
-				if (!covidCountries.contains(lines[2])){
-					covidCountries.add(lines[2]);	
-				}
-				covidDates.add(lines[0]);
+			for (JsonObject results : jsonArray.getValuesAs(JsonObject.class)){
+				System.out.println(results);
 			}
-
-			covidDates.remove(0);
-			covidCountries.remove(0);
-
-			reader.close();
-
-			//System.out.println(covidCountries);
-
-			for (String country: covidCountries){
-				System.out.println(country);
-			}
-
-		}catch(Exception e ){
-			e.printStackTrace();
-			System.out.println(e.toString());
-		}
-	}
-
-
-
-	public void readRickAndMorty()  {
-
-		try {
-			URL connector = new URL(rickAndMortyApi);
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connector.openStream()));
-			String inLines;
-			int counter = 0;
-			while((inLines  = bufferedReader.readLine()) != null){
-				String[] lines = inLines.split(",");
-				System.out.println(lines[counter]);
-				counter++;
-			}
-
-			bufferedReader.close();
-
 
 		}catch (MalformedURLException malformedURLException){
 			malformedURLException.printStackTrace();
@@ -104,12 +56,18 @@ public class RickAndMorty {
 	 */
 
 
-	public static void main(String[] args){
+	public static void main(String[] args)  {
 
 		RickAndMorty api = new RickAndMorty();
 		//api.readCovidPage();
-		api.readRickAndMorty();
 
+		try {
+			api.readRickAndMorty();
+
+		}catch (MalformedURLException e ){
+			e.printStackTrace();
+			System.out.println(e.toString());
+		}
 
 
 	}
