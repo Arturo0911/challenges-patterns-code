@@ -1,12 +1,10 @@
 package com.company.process.interview;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import java.net.*;
 import java.io.*;
-import java.util.*;
 
 
 /**
@@ -24,20 +22,45 @@ public class RickAndMorty {
 
 
 
+	public void readFromUrlRickAndMorty() throws  Exception{
+
+		URL url = new URL(rickAndMortyApi);
+		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+		httpURLConnection.setRequestMethod("GET");
+
+		if(httpURLConnection.getResponseCode() == 200){
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader( httpURLConnection.getInputStream(),"utf-8"));
+			StringBuilder response = new StringBuilder();
+			String inputLine; // this one gonna read each lines from the request
+			while((inputLine = bufferedReader.readLine()) != null){
+				response.append(inputLine);
+			}
+			bufferedReader.close();
+			//System.out.println(response.toString());
+			JSONParser jsonParser = new JSONParser(); // using the simple json library to change from string to json
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(response.toString());
+			System.out.println(jsonObject);
+
+		}else {
+			System.out.println("error getting the data from the url ");
+		}
+
+	}
 
 
-	public void readRickAndMorty() throws MalformedURLException {
+
+	/*public void readRickAndMorty() throws MalformedURLException {
 
 		URL url = new URL(rickAndMortyApi);
 		try (InputStream inputStream =  url.openStream();
 			 JsonReader jsonReader = Json.createReader(inputStream)) {
 
 			JsonObject object = jsonReader.readObject();
-			JsonArray jsonArray = object.getJsonArray("results");
+			System.out.println(object.getJsonObject("info"));
+			String name = "arturo";
 
-			for (JsonObject results : jsonArray.getValuesAs(JsonObject.class)){
-				System.out.println(results);
-			}
+			System.out.println(name.substring(0,5));
+
 
 		}catch (MalformedURLException malformedURLException){
 			malformedURLException.printStackTrace();
@@ -45,7 +68,7 @@ public class RickAndMorty {
 			e.printStackTrace();
 		}
 
-	}
+	}*/
 
 
 
@@ -59,16 +82,13 @@ public class RickAndMorty {
 	public static void main(String[] args)  {
 
 		RickAndMorty api = new RickAndMorty();
-		//api.readCovidPage();
 
 		try {
-			api.readRickAndMorty();
-
-		}catch (MalformedURLException e ){
+			api.readFromUrlRickAndMorty();
+		}catch (Exception e ){
 			e.printStackTrace();
 			System.out.println(e.toString());
 		}
-
 
 	}
 
