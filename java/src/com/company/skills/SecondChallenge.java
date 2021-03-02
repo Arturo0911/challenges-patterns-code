@@ -29,6 +29,41 @@ class Result {
     public static int maxCost(List<Integer> cost, List<String> labels, int dailyCount) {
         // Write your code here
 
+        int counter1 = 0;
+        int counter= 0;
+        int maxSum = 0;
+
+
+        while (true){
+
+            for (int i=0; i < labels.size(); i++){
+
+
+
+
+                if (dailyCount == counter){
+                    for (int x =0; x < dailyCount; x++){
+
+                    }
+                }
+
+                if (labels.get(i).equals("legal") && counter < dailyCount){
+                    counter++;
+                    maxSum += cost.get(i);
+                }
+
+            }
+
+        }
+
+
+
+
+
+        return maxSum;
+
+
+
     }
 
 }
