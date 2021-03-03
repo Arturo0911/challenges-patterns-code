@@ -25,44 +25,34 @@ public class ArraysTwoDimension {
     static int hourglassSum(int[][] arr) {
 
         ArrayList<Integer> finalSum = new ArrayList<>();
+        for(int l =0; l < 4; l++){
+            for(int k =0; k < 3+1; k++){
+                int sum =0;
+                int position =0;
+                for (int i =l; i < 3+l; i++){
 
-        for(int k =0; k < 3+1; k++){
-            int sum =0;
-            int position =0;
-            for (int i =0; i < 3; i++){
+                    for (int j =k; j < 3+k; j++){
 
-                for (int j =k; j < 3+k; j++){
-
-                    if (position == 1){
-                        finalSum += arr[][];
-                        position ++;
-                        break;
-                    }else{
-
+                        if (position == 1){
+                            //System.out.print(arr[i][j+1]);
+                            sum += arr[i][j+1];
+                            //position ++;
+                            break;
+                        }else{
+                            //System.out.print(arr[i][j]);
+                            sum += arr[i][j];
+                        }
                     }
                     position++;
-
-                    System.out.print(arr[i][j]);
+                    //System.out.println("");
                 }
-                System.out.println("");
+                finalSum.add(sum);
+                //System.out.println("\n");
             }
-            System.out.println("\n");
-        }
-
-        for(int k =0; k < 3+1; k++){
-            int sum =0;
-            for (int i =3; i < 6; i++){
-
-                for (int j =k; j < 3+k; j++){
-                    System.out.print(arr[i][j]);
-
-                }
-                System.out.println("");
-            }
-            System.out.println("\n");
         }
 
         Collections.sort(finalSum);
+        System.out.println(finalSum);
         return finalSum.get(finalSum.size() - 1);
     }
 
@@ -85,6 +75,8 @@ public class ArraysTwoDimension {
         }
 
         int result = hourglassSum(arr);
+
+        System.out.println(result);
 
         /*bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
