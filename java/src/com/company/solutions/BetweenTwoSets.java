@@ -2,11 +2,16 @@ package com.company.solutions;
 
 
 import java.io.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+
+/**
+ * @author Arturo Negreiros
+ */
 class Result {
 
     /*
@@ -18,8 +23,34 @@ class Result {
      *  2. INTEGER_ARRAY b
      */
 
+    public static boolean hasFactors(int number, List<Integer>arr){
+        for(int i = 0; i < arr.size(); i++){
+            if(number % arr.get(i) != 0) return false;
+        }
+        return true;
+    }
+
+    public static boolean isFactor(int number, List<Integer> arr){
+        for(int j = 0; j < arr.size(); j++){
+            if(arr.get(j) % number != 0) return false;
+        }
+        return true;
+    }
+
     public static int getTotalX(List<Integer> a, List<Integer> b) {
         // Write your code here
+        Collections.sort(a);
+        Collections.sort(b);
+        int counter = 0;
+        int min = a.get(0);
+        int max = b.get(b.size() - 1);
+
+        for (int x = min; x < max; x++ ) {
+            if(hasFactors(x, a) && isFactor(x, b)) counter ++;
+        }
+
+
+        return counter;
 
     }
 
