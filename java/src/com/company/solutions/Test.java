@@ -1,11 +1,11 @@
-package com.company.solutions;
+//package com.company.solutions;
 
 
 /**
  * @author Arturo Negreiros
  */
 
-public class test {
+public class Test {
 
 	/**
 	 * @param name
@@ -20,6 +20,9 @@ public class test {
 
 
 	public static void main(String[] args) {
+
+
+		System.out.println("hello world!");
 		
 	}
 }
