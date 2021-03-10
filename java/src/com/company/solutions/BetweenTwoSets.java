@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * @author Arturo Negreiros
  */
-class Result {
+class NewResult {
 
     /*
      * Complete the 'getTotalX' function below.
@@ -75,7 +75,7 @@ public class BetweenTwoSets {
                 .map(Integer::parseInt)
                 .collect(toList());
 
-        int total = Result.getTotalX(arr, brr);
+        int total = NewResult.getTotalX(arr, brr);
 
         bufferedWriter.write(String.valueOf(total));
         bufferedWriter.newLine();
