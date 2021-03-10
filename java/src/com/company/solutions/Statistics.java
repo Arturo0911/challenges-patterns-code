@@ -17,11 +17,26 @@ public class Statistics {
     public static void main(String[] args) {
 
         int size = scanner.nextInt();
+        int sum = 0;
+        float median = 0;
+        float mean = 0;
+        float mode = 0;
         ArrayList<Integer> values = new ArrayList<>();
         scanner.nextLine();
-        for (int x =0; x < size; x ++){
-            values.add(scanner.nextInt());
+        String []arrays = scanner.nextLine().split(" ");
+
+        for (String array: arrays){
+            values.add(Integer.parseInt(array));
         }
+
+        for (Integer value: values){
+            sum += value;
+        }
+        mean = (float)(sum / size);
+
+        System.out.printf("%.2f", ((float)(sum/size)));
+
+
 
         System.out.println(values);
     }
