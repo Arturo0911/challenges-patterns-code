@@ -1,60 +1,35 @@
 #!/bin/python3
-
-#
-# Complete the 'formingMagicSquare' function below.
-#
-# The function is expected to return an INTEGER.
-# The function accepts 2D_INTEGER_ARRAY s as parameter.
-#
-from statistics import mode
-from typing import Any
 from pprint import pprint
 
+all_squares = [
+    [[8, 1, 6], [3, 5, 7], [4, 9, 2]],
+    [[6, 1, 8], [7, 5, 3], [2, 9, 4]],
+    [[4, 9, 2], [3, 5, 7], [8, 1, 6]],
+    [[2, 9, 4], [7, 5, 3], [6, 1, 8]],
+    [[8, 3, 4], [1, 5, 9], [6, 7, 2]],
+    [[4, 3, 8], [9, 5, 1], [2, 7, 6]],
+    [[6, 7, 2], [1, 5, 9], [8, 3, 4]],
+    [[2, 7, 6], [9, 5, 1], [4, 3, 8]],
+]
 
-class MagicSquare:
 
-    def _magic_constant(self, square: list, option=True) -> Any:
-        if option:
-            area = list()
-            for i in range(0, 3):
-                sum_horizontal = 0
-                sum_vert = 0
-                for j in range(0, 3):
-                    sum_horizontal += square[i][j]
-                    sum_vert += square[j][i]
-                area.append(sum_horizontal)
-                area.append(sum_vert)
-            area.append((square[0][0] + square[1][1] + square[2][2]))
-            area.append((square[0][2] + square[1][1] + square[2][0]))
-            return mode(sorted(area))
-        else:
-            less_cost = list()
-            number = self._magic_constant(square, True)
-            for i in range(0, 3):
-                sum_horizontal = 0
-                sum_vert = 0
-                for j in range(0, 3):
-                    sum_horizontal += square[i][j]
-                    sum_vert += square[j][i]
+def magic_square(square: list) -> int:
+    global all_squares
+    all_min_values = list()
 
-                    if j == 2:
-                        print(square[i][j - 2], square[i][j - 1], square[i][j])
-                        if number != sum_horizontal:
-                            # print(sum_horizontal)
-                            less_cost.append(abs(number - sum_horizontal))
-
-                        if number != sum_vert:
-                            # print(sum_vert)
-                            less_cost.append(abs(number - sum_vert))
-
-            return sum(less_cost)
-
-    def solve_magic_square(self, square: list) -> int:
-        pprint(square)
-        return self._magic_constant(square, False)
+    for i in all_squares:
+        value = 0
+        for x, y in zip(i,square):
+            for r, c in zip(x,y):
+                if r != c:
+                    value += max([r, c]) - min([r, c])
+        all_min_values.append(value)
+    return min(all_min_values)
 
 
 if __name__ == '__main__':
-    square_magic = MagicSquare()
-    print(square_magic.solve_magic_square([[4, 9, 2], [3, 5, 7], [8, 1, 5]]))
+    pass
+    # make_magic_squared()
+    # print(magic_square([[4, 9, 2], [3, 5, 7], [8, 1, 5]]))
+    # print(magic_square([[4, 8, 2], [4, 5, 7], [6, 1, 6]]))
     # print(square_magic.solve_magic_square([[4, 8, 2], [4, 5, 7], [6, 1, 6]]))
