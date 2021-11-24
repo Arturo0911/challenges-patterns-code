@@ -25,26 +25,19 @@ def merge_sort(array: list) -> list:
             if left[i] < right[j]:
                 array[k] = left[i]
                 i += 1
-
             else:
                 array[k] = right[j]
                 j += 1
-
             k += 1
-
         while i < len(left):
             array[k] = left[i]
             i += 1
             k += 1
-
         while j < len(right):
             array[k] = right[j]
             j += 1
             k += 1
-
         return array
-
-
 
 def main():
 
