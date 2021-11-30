@@ -1,17 +1,12 @@
 #!/usr/bin/python3
 
 
-
-
-def quick_sort(array: list):
+def binary_search():
     pass
 
 
-
-
 def main():
-    array_value = []
-    quick_sort(array_value)
+    pass
 
 
 
