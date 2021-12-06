@@ -47,8 +47,9 @@ def quick_sort(array: List[int]) -> List[int]:
 
 def main():
     array = [5, 11, 14, 2, 34, 6, 7, 8, 1, 9]
+    print(array)
     array = bubble_sort(array)
-
+    
     print(binary_search(14, array))
     print(binary_search(99, array))
 
