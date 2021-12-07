@@ -10,7 +10,21 @@ def quick_sort(array: List[int]) -> List[int]:
     make others list that containts the values in separates 
     values, it's simmilar to split and conquer"""
 
-    return array
+    if len(array) < 1:
+        return []
+
+    lesser = list()
+    higher = list()
+    pivot = array[0]
+
+    for x in range(1, len(array)):
+
+        if array[x] < pivot:
+            lesser.append(array[x])
+        else:
+            higher.append(array[x])
+
+    return quick_sort(lesser) + [pivot] + quick_sort(higher)
 
 
 
@@ -82,6 +96,7 @@ def main():
     print(f"Insert sort => {insert_sort((new_list))}")
     print(f"Merge sort => {merge_sort((new_list))}")
     print(f"bubble sort => {bubble_sort((new_list))}")
+    print(f"quick sort => {quick_sort((new_list))}")
 
 if __name__ == "__main__":
     main()

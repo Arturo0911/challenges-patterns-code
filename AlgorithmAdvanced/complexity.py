@@ -107,7 +107,7 @@ def quick_sort(array: List[int]) -> List[int]:
     if len(array) < 1:
         return []
 
-    pivot = array[2]
+    pivot = array[0]
     left = list()
     right = list()
 
