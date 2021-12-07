@@ -100,13 +100,34 @@ def merge_sort(array: List[int]) -> List[int]:
     return array
 
 
+def quick_sort(array: List[int]) -> List[int]:
+
+    # in this kind of algorithn you have to choose a pivot
+
+    if len(array) < 1:
+        return []
+
+    pivot = array[2]
+    left = list()
+    right = list()
+
+    for x in range(1, len(array)):
+
+        if array[x] < pivot:
+            left.append(array[x])
+        else:
+            right.append(array[x])
+    
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
 
 def main():
     array = [5, 11, 14, 2, 34, 6, 7, 8, 1, 9, 43, 31, 16]
     print(array)
     print(f"[*] Implementation of bubble sort {bubble_sort(array)}")
     print(f"[*] Implementation of insert sort {insert_sort(array)}")
-    print(f"[*] Implementation of merge sort {merge_sort(array)}")    
+    print(f"[*] Implementation of merge sort {merge_sort(array)}")
+    print(f"[*] Implementation of quick sort {quick_sort(array)}")   
 
 
 if __name__ == "__main__":
