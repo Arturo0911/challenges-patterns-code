@@ -57,12 +57,56 @@ def insert_sort(array: List[int]) -> List[int]:
 
 
 
+
+def merge_sort(array: List[int]) -> List[int]:
+    """Split and conquist"""
+
+    if len(array) > 1:
+        
+        middle = len(array)//2
+        left = array[:middle]
+        right = array[middle:]
+
+        # recursive calling
+        merge_sort(left)
+        merge_sort(right)
+
+        # iterators
+        i, j, k = 0, 0, 0
+
+        while i < len(left) and j < len(right):
+
+            if left[i] < right[j]:
+                array[k] = left[i]
+                i += 1
+            else:
+                array[k] = right[j]
+                j += 1
+
+            k += 1
+
+        while i < len(left):
+
+            array[k] = left[i]
+            k += 1
+            i += 1
+            
+        while j < len(right):
+            
+            array[k] = right[j]
+            k += 1
+            j += 1
+
+    return array
+
+
+
 def main():
-    array = [5, 11, 14, 2, 34, 6, 7, 8, 1, 9]
+    array = [5, 11, 14, 2, 34, 6, 7, 8, 1, 9, 43, 31, 16]
     print(array)
     print(f"[*] Implementation of bubble sort {bubble_sort(array)}")
     print(f"[*] Implementation of insert sort {insert_sort(array)}")
-    
+    print(f"[*] Implementation of merge sort {merge_sort(array)}")    
 
 
 if __name__ == "__main__":
