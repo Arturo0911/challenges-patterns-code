@@ -1,8 +1,7 @@
 #!/usr/bin/python3
+from typing import Dict
 
-
-
-def fibonacci(n: int, cache: dict) -> int:
+def fibonacci(n: int, cache: Dict[int, int]) -> int:
 
     if n in cache:
         return cache[n]
