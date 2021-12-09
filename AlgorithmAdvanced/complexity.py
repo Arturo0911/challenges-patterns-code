@@ -9,6 +9,38 @@ from typing import (
 """Dynamically"""
 
 
+def heapify(array: list, n: int, i:int):
+    largest = i
+    left = 2*i + 1
+    right = 2*i + 2
+
+    if left < n and array[largest] < array[left]:
+        largest = left
+
+    if right < n and array[largest] < array[right]:
+        largest = right
+    
+    if largest != i:
+        array[largest], array[i] = array[i], array[largest]
+
+        heapify(array, n, largest)
+
+def heap_sort(array):
+    
+    size = len(array)
+
+    for x in range(size//2 -1, -1, -1):
+        heapify(array, size, x)
+
+    for x in range(size-1, 0, -1):
+        array[x], array[0] = array[0], array[x]
+        heapify(array, x, 0)
+
+
+    return array
+
+
+
 def normal_fibonacci(n: int) -> int:
     if n <= 1:
         return n
@@ -135,6 +167,7 @@ def main():
     print(f"[*] Implementation of insert sort {insert_sort(array)}")
     print(f"[*] Implementation of merge sort {merge_sort(array)}")
     print(f"[*] Implementation of quick sort {quick_sort(array)}")
+    print(f"[*] Implementation of quick sort {heap_sort(array)}")
 
 
 if __name__ == "__main__":
