@@ -20,10 +20,9 @@ class CredentialPrediction:
             credential += str(random.randint(0, 9))
         return credential
 
-    def check_credential_valid(self, credential):
+    def check_credential_valid(self, credential) -> bool:
 
         try:
-            # variables
             list_credential = list(credential)
             size = len(list_credential)
             third_digit = int(list_credential[2])
@@ -78,6 +77,4 @@ credentials = CredentialPrediction()
 
 pprint(credentials.valid_credentials())
 
-# credential = "0918237421"
-# print(check_credential_valid(credential))
-# print(generate_random_credentials())
+
