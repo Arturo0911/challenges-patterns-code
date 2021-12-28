@@ -5,8 +5,9 @@ from typing import (
     Any
 )
 
-def sorting(array: List[int], solution: List[int]) -> List[int]:
-    
+
+def sorting(array: List[int], solution: List[int]) -> None:
+
 
     if array != solution:
         central = array
@@ -16,8 +17,8 @@ def sorting(array: List[int], solution: List[int]) -> List[int]:
         middle = len(array)//2
         index = 0
         final = len(array)-1
-        
-        
+
+
         central[middle], central[middle-1] = central[middle-1], central[middle]
         left[index], left[index+1] = left[index+1], left[index]
         right[final-1], right[final] = right[final], right[final-1]
@@ -39,7 +40,7 @@ def sorting(array: List[int], solution: List[int]) -> List[int]:
 
 
 def main():
-    
+
     print(sorting([3,4, 1, 2], [4,3,2,1]))
 
 
