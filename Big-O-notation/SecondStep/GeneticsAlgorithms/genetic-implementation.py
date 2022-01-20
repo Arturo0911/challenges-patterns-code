@@ -5,7 +5,10 @@ from typing import (
     List,
     Dict
 )
-from random import randint
+from random import (
+    randint,
+    choices
+)
 
 
 Genome = List[int]
@@ -57,6 +60,15 @@ def fitness(genome: Genome, things: [Thing], weight_limit: int) -> int:
                 return 0
 
     return value
+
+
+def selection_pair(population: Population, fitness_func: FitnessFunc) -> Population:
+    return choices(
+        population=population,
+        weights=[fitness_func(genome] for genome in population],
+        k=2
+    )
+
 
 def score():
     pass
