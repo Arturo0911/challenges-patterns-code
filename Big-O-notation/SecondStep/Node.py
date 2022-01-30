@@ -36,7 +36,7 @@ class Node:
 
     def get_childs(self):
         return self.childs
-    
+
     def set_childs(self, childs):
         self.childs = childs
 
@@ -47,7 +47,7 @@ class Node:
     def is_equal(self, node) -> bool:
         return self.get_data() == node.get_data()
 
-    def in_list(self, list_nodes: List[Node]) -> bool:
+    def in_list(self, list_nodes) -> bool:
         in_the_list = False
         
         for x in list_nodes:
