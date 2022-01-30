@@ -13,7 +13,7 @@ class Node:
         self.data = data
         self.childs = None
         self.father = None
-        self.costo = None
+        self.cost = None
         self.set_childs(childs)
 
     def get_data(self):
