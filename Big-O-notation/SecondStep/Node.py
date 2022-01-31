@@ -40,12 +40,15 @@ class Node:
     def set_childs(self, childs):
         self.childs = childs
 
-        if self.childs is not None:
+        if self.childs != None:
             for h in self.childs:
-                h.padre = self
+                h.father = self
     
     def is_equal(self, node) -> bool:
-        return self.get_data() == node.get_data()
+        if self.get_data() == node.get_data():
+            return True
+        else:
+            return False
 
     def in_list(self, list_nodes) -> bool:
         in_the_list = False

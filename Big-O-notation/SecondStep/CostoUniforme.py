@@ -16,12 +16,12 @@ def Busqueda_Costo_Uniforme(conexiones, estado_inicial, solucion) -> Nodo:
 
 
         nodos_frontera= sorted(nodos_frontera, key= cmp_to_key(compara) )
-        print(dir(nodos_frontera[0]))
         nodo=nodos_frontera[0]
         nodos_visitados.append(nodos_frontera.pop(0))
         if nodo.get_datos()==solucion:
+            print(f"node get data {nodo.get_datos()}")
             solucionado=True
-            print("before return", nodo)
+            print(nodo.get_padre())
             return nodo
         else:
             dato_nodo= nodo.get_datos()
@@ -29,6 +29,7 @@ def Busqueda_Costo_Uniforme(conexiones, estado_inicial, solucion) -> Nodo:
             for un_hijo in conexiones[dato_nodo]:
                 hijo = Nodo(un_hijo)
                 costo = conexiones[dato_nodo][un_hijo]
+                # print(f"the cost {costo}")
                 hijo.set_costo(nodo.get_costo()+ costo)
                 lista_hijos.append(hijo)
                 if not hijo.en_lista(nodos_visitados):
@@ -58,10 +59,9 @@ if __name__=="__main__":
     estado_inicial="A"
     solucion="Z"
     nodo_solucion= Busqueda_Costo_Uniforme(conexiones, estado_inicial,solucion)
-
+    # print(nodo_solucion)
     resultado=[]
     nodo= nodo_solucion
-    print(type(nodo))
     while nodo.get_padre() != None:
         resultado.append(nodo.get_datos())
         nodo= nodo.get_padre()
