@@ -5,6 +5,7 @@ github.com/Arturo0911/challenges_patterns_code
 :author: Arturo Negreiros (aka H0n3yL04d)
 """
 
+import matplotlib.pyplot as plt
 import sys
 import random
 from random import randint
@@ -30,7 +31,11 @@ def MC_implementation(size_elements: int):
     # indicated
     
     gx = [fx(x) for x in x_vals]
-
+    plt.figure(figsize=(12, 12))
+    plt.plot(x_vals, gx, label="random numbers")
+    # plt.plot(gx, label='g(x) numbers')
+    plt.legend()
+    plt.show()
     # the approximation 
     approximation = sum(gx)/len(gx)
     return approximation
@@ -38,11 +43,11 @@ def MC_implementation(size_elements: int):
 
 
 def main():
-    """
-    try this => python3 AlgorithmSimulation.py 100
-    where 100 is the size of elements to generate 
-    the approximation
-    """
+    print("""\n\n
+    \t\ttry this => python3 AlgorithmSimulation.py 100
+    \t\twhere 100 is the size of elements to generate 
+    \t\tthe approximation
+    """)
     try:
         size = int(sys.argv[1])
         print(MC_implementation(size_elements=size))
@@ -53,6 +58,8 @@ def main():
         the elements>
         """)
         exit(1)
+    except KeyboardInterrupt:
+        exit(0)
 
 
 if __name__ == "__main__":
