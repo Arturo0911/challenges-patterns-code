@@ -23,15 +23,12 @@ const credValidator = (credential) =>{
   let finalNumber = 0;
   for (let x = 0; x < credential.length-1; x++){
     if (x%2 == 0){
-      console.log(x, another[x] * 2);
       if (another[x] * 2 >=10){
         finalNumber += (another[x] * 2-9);
-        console.log(x, another[x] * 2 -9);
       }else{
         finalNumber += (another[x] * 2);
       }
     }else{
-      console.log(x, another[x]);
       finalNumber += another[x];
     }
   }
@@ -40,9 +37,30 @@ const credValidator = (credential) =>{
 }
 
 
-
+const credentials = document.getElementById("credentials");
 const word = document.getElementById("word");
 const button = document.getElementById("buttonclick");
+const buttonCredentials = document.getElementById("buttonCred");
+
+
+
+
+
+credentials.addEventListener('keyup', (event)=>{
+
+  if (credentials.value.length == 10){
+
+    if (credValidator(credentials.value)){
+      console.log("The values inputed are correct!!");
+    }else{
+      console.log("Wrong credentials");
+    }
+  }
+  
+});
+
+
+
 
 
 button.addEventListener("click", (event)=>{
