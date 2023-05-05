@@ -33,9 +33,12 @@ def accuracy_testing(path_model: int,
     """
     Defining the path for the pre-trained models
     """
-    MAIN_PATH = "models/"
-    model = f"{MAIN_PATH}riceaiv{path_model}.json"
-    weights = f"{MAIN_PATH}riceaiv{path_model}.hdf5"
+    MAIN_PATH = "final_models/"
+    # model = f"{MAIN_PATH}riceaiv{path_model}.json"
+    # weights = f"{MAIN_PATH}riceaiv{path_model}.hdf5"
+    
+    model = f"{MAIN_PATH}final.{path_model}.json"
+    weights = f"{MAIN_PATH}final.{path_model}.hdf5"
     
     log.progress(f"Loading model riceaiv{path_model} and loading {path_image}")
     
@@ -54,8 +57,8 @@ def accuracy_testing(path_model: int,
     
 def main():
     try:
-        accuracy_testing(3, "rice_test4.jpeg")
-        accuracy_testing(7, "rice_test4.jpeg")
+        accuracy_testing(2, "rice_test1.jpeg")
+        accuracy_testing(2, "rice_test4.jpeg")
         
     except Exception as e:
         log.error("error in the testing models or json")
